@@ -4,7 +4,7 @@
 
 > A zero-dependency browser app for tracking a personal physical media library with filtering, stats, and smart film suggestions.
 
-![Status](https://img.shields.io/badge/status-Active-brightgreen)
+![Status](https://img.shields.io/badge/status-In%20Progress-brightgreen)
 ![Language](https://img.shields.io/badge/language-HTML%20%2F%20CSS%20%2F%20JS-blue)
 ![Timeline](https://img.shields.io/badge/timeline-Spring%202026-orange)
 
