@@ -1,0 +1,8 @@
+# Ignore local physical media database backups
+movies.js
+
+# Ignore browser/editor environment files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

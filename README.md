@@ -1,3 +1,5 @@
+<!-- SHOWCASE: true -->
+
 # Movie Collection Manager
 
 > A zero-dependency browser app for tracking a personal physical media library with filtering, stats, and smart film suggestions.
@@ -117,11 +119,16 @@ The database is schema-driven inside `movies.js`. The global state cleanly divid
 
 ## Installation & Usage
 
-No installation required. Clone or download the repo and open `index.html` in a browser.
+No installation, runtime environments, or local servers are required. Clone the repository files and open the primary user interface directly inside any modern web browser.
 
 ```bash
-git clone https://github.com/alexneilgreen/MovieCollectionManager.git
-cd MovieCollectionManager
+# Clone the repository
+git clone [https://github.com/alexneilgreen/Movie-Collection-Registry.git](https://github.com/alexneilgreen/Movie-Collection-Registry.git)
+
+# Navigate into the project directory
+cd Movie-Collection-Registry
+
+# Open index.html using your operating system's native terminal handler
 open index.html        # macOS
 start index.html       # Windows
 xdg-open index.html    # Linux
