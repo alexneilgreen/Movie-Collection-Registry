@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Movie Collection</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+			<symbol id="icon-export" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+				<polyline points="7 10 12 15 17 10" />
+				<line x1="12" y1="15" x2="12" y2="3" />
+			</symbol>
+			<symbol id="icon-select" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<rect x="3" y="5" width="4" height="4" rx="1" />
+				<rect x="3" y="11" width="4" height="4" rx="1" />
+				<rect x="3" y="17" width="4" height="4" rx="1" />
+				<line x1="10" y1="7" x2="21" y2="7" />
+				<line x1="10" y1="13" x2="21" y2="13" />
+				<line x1="10" y1="19" x2="21" y2="19" />
+			</symbol>
+			<symbol id="icon-select-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<polyline points="9 11 12 14 22 4" />
+				<path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+			</symbol>
+			<symbol id="icon-delete" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<polyline points="3 6 5 6 21 6" />
+				<path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" />
+				<path d="M10 11v6" />
+				<path d="M14 11v6" />
+				<path d="M9 6V4h6v2" />
+			</symbol>
+			<symbol id="icon-cancel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<line x1="18" y1="6" x2="6" y2="18" />
+				<line x1="6" y1="6" x2="18" y2="18" />
+			</symbol>
+			<symbol id="icon-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" />
+				<polyline points="17 21 17 13 7 13 7 21" />
+				<polyline points="7 3 7 8 15 8" />
+			</symbol>
+			<symbol id="icon-add" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<line x1="12" y1="5" x2="12" y2="19" />
+				<line x1="5" y1="12" x2="19" y2="12" />
+			</symbol>
+			<symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<circle cx="11" cy="11" r="8" />
+				<line x1="21" y1="21" x2="16.65" y2="16.65" />
+			</symbol>
+			<symbol id="icon-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+				<path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+			</symbol>
+			<symbol id="icon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<circle cx="12" cy="12" r="10" />
+				<line x1="12" y1="16" x2="12" y2="12" />
+				<line x1="12" y1="8" x2="12.01" y2="8" />
+			</symbol>
+		</svg>
+
+		<header>
+			<div class="brand-wrap">
+				<button class="btn-hamburger" id="btn-sidebar-toggle" title="Toggle filters">
+					<span></span><span></span><span></span>
+				</button>
+				<div class="logo">Movie Collection <span>PHYSICAL MEDIA</span></div>
+			</div>
+			<div class="header-actions">
+				<button class="btn btn-ghost" id="btn-export">
+					<svg width="14" height="14"><use href="#icon-export"></use></svg> Export JS
+				</button>
+				<button class="btn btn-ghost" id="btn-select">
+					<svg width="14" height="14"><use href="#icon-select"></use></svg> Select
+				</button>
+				<button class="btn btn-ghost d-none" id="btn-select-all">
+					<svg width="14" height="14"><use href="#icon-select-all"></use></svg> Select All
+				</button>
+				<button class="btn btn-warning d-none" id="btn-delete-selected">
+					<svg width="14" height="14"><use href="#icon-delete"></use></svg> Delete (<span id="selected-count">0</span>)
+				</button>
+				<button class="btn btn-ghost d-none" id="btn-cancel-select">
+					<svg width="14" height="14"><use href="#icon-cancel"></use></svg> Cancel
+				</button>
+				<button class="btn btn-ghost" id="btn-save">
+					<svg width="14" height="14"><use href="#icon-save"></use></svg> Save
+				</button>
+				<button class="btn btn-primary" id="btn-add">
+					<svg width="14" height="14"><use href="#icon-add"></use></svg> Add Film
+				</button>
+			</div>
+		</header>
+
+		<div class="search-bar">
+			<div class="search-wrap">
+				<svg width="15" height="15"><use href="#icon-search"></use></svg>
+				<input class="search-input" id="search" type="text" placeholder="Search titles…" />
+			</div>
+			<div class="stats-inline" id="stats"></div>
+		</div>
+
+		<div class="page-body">
+			<aside class="sidebar collapsed" id="sidebar">
+				<div class="sidebar-section">
+					<div class="sidebar-label">Category</div>
+					<select class="filter-select" id="filter-cat"></select>
+				</div>
+				<div class="sidebar-section">
+					<div class="sidebar-label">Sort</div>
+					<select class="filter-select" id="filter-sort"></select>
+				</div>
+				<div class="sidebar-section">
+					<div class="sidebar-label">Format</div>
+					<select class="filter-select" id="filter-format"></select>
+				</div>
+				<div class="sidebar-section">
+					<div class="sidebar-label">Owned</div>
+					<select class="filter-select" id="filter-owned"></select>
+				</div>
+				<div class="sidebar-section">
+					<div class="sidebar-label">On Drive</div>
+					<select class="filter-select" id="filter-digi"></select>
+				</div>
+				<div class="sidebar-section pt-1">
+					<button class="btn btn-primary btn-block" id="btn-suggest">
+						🎲 Suggest Film
+					</button>
+				</div>
+				<div class="sidebar-section pt-1">
+					<button class="btn btn-ghost btn-block" id="btn-stats">
+						📊 Stats
+					</button>
+				</div>
+			</aside>
+
+			<div class="content">
+				<div id="collection"></div>
+			</div>
+		</div>
+
+		<!-- ── ADD / EDIT FILM MODAL ── -->
+		<div class="modal-overlay" id="modal-entry">
+			<div class="modal">
+				<div class="modal-header">
+					<div class="modal-title" id="modal-entry-title">Add Film</div>
+					<button class="modal-close" id="modal-entry-close">✕</button>
+				</div>
+				<div class="modal-body">
+
+					<!-- Title -->
+					<div class="form-row">
+						<label>Title</label>
+						<input class="form-input" id="f-title" placeholder="e.g. The Great Escape" />
+					</div>
+
+					<!-- Year + Category -->
+					<div class="form-row-2">
+						<div class="form-row">
+							<label>Year</label>
+							<input class="form-input" id="f-year" type="number" placeholder="1963" min="1888" max="2099" />
+						</div>
+						<div class="form-row">
+							<label>Category</label>
+							<select class="form-select" id="f-category"></select>
+						</div>
+					</div>
+
+					<!-- Format + Toggles -->
+					<div class="form-grid-4">
+						<div class="form-row mb-0">
+							<label>Format</label>
+							<select class="form-select" id="f-format">
+								<option value="4k">4K UHD</option>
+								<option value="bluray">Blu-ray</option>
+								<option value="dvd">DVD</option>
+							</select>
+						</div>
+						<div class="form-row mb-0">
+							<label>Owned</label>
+							<div class="toggle-row toggle-align">
+								<button class="toggle on" id="f-owned-toggle"></button>
+								<span class="toggle-label" id="f-owned-label">Yes</span>
+							</div>
+						</div>
+						<div class="form-row mb-0">
+							<label>Copied to Drive</label>
+							<div class="toggle-row toggle-align">
+								<button class="toggle" id="f-digitized-toggle"></button>
+								<span class="toggle-label" id="f-digitized-label">No</span>
+							</div>
+						</div>
+						<div class="form-row mb-0">
+							<label>Box Set</label>
+							<div class="toggle-row toggle-align">
+								<button class="toggle" id="f-boxset-toggle"></button>
+								<span class="toggle-label" id="f-boxset-label">No</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Box Set: subfilm builder (shown when isBoxSet) -->
+					<div id="f-subfilms-wrap" class="d-none">
+						<div class="form-row">
+							<label>Films in this set</label>
+							<div class="subfilms-builder" id="subfilms-builder"></div>
+							<button class="add-subfilm-btn" id="add-subfilm-btn">+ Add film to set</button>
+						</div>
+						<div class="form-row mt-1">
+							<label>Total Set Size <span class="form-hint">(GB — auto-sums from films below)</span></label>
+							<input class="form-input readonly-input" id="f-filesize" type="number" step="0.01" min="0" placeholder="Auto-calculated" readonly />
+						</div>
+					</div>
+
+					<!-- Standalone: single file size (hidden when isBoxSet) -->
+					<div id="f-singlesize-wrap">
+						<div class="form-row mt-1">
+							<label>File Size <span class="form-hint">(GB, optional)</span></label>
+							<input class="form-input" id="f-filesize-single" type="number" step="0.01" min="0" placeholder="e.g. 28.5" />
+						</div>
+					</div>
+
+					<hr class="divider" />
+
+					<!-- Standalone Wikipedia link (hidden when isBoxSet) -->
+					<div id="f-wiki-single-wrap">
+						<div class="form-row">
+							<label>Wikipedia Link <span class="form-hint">(auto-fetched, optional override)</span></label>
+							<input class="form-input" id="f-wiki" placeholder="https://en.wikipedia.org/wiki/…" />
+						</div>
+					</div>
+
+					<!-- Box Set Wikipedia links (shown when isBoxSet) -->
+					<div id="f-wiki-boxset-wrap" class="d-none">
+						<div class="form-row">
+							<label>Wikipedia Links <span class="form-hint">(per film — auto-fetched, optional override)</span></label>
+							<div id="f-wiki-boxset-list"></div>
+						</div>
+					</div>
+
+					<!-- Purchase links -->
+					<div class="form-row">
+						<label>Amazon Link <span class="form-hint">(optional)</span></label>
+						<input class="form-input" id="f-amazon" placeholder="https://amazon.com/…" />
+					</div>
+					<div class="form-row">
+						<label>Best Buy Link <span class="form-hint">(optional)</span></label>
+						<input class="form-input" id="f-bestbuy" placeholder="https://bestbuy.com/…" />
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-ghost" id="modal-entry-cancel">Cancel</button>
+					<button class="btn btn-primary" id="modal-entry-save">Save Film</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- ── NEW CATEGORY MODAL ── -->
+		<div class="modal-overlay" id="modal-newcat">
+			<div class="modal modal-sm">
+				<div class="modal-header">
+					<div class="modal-title">New Category</div>
+					<button class="modal-close" id="modal-newcat-close">✕</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-row">
+						<label>Category Name</label>
+						<input class="form-input" id="newcat-name" placeholder="e.g. Anime, Documentary…" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-ghost" id="modal-newcat-cancel">Cancel</button>
+					<button class="btn btn-primary" id="modal-newcat-save">Create & Select</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- ── SUGGEST MODAL ── -->
+		<div class="suggest-overlay" id="modal-suggest">
+			<div class="suggest-modal">
+				<div class="suggest-header">
+					<span class="suggest-title">Suggested Film</span>
+					<div class="suggest-header-actions" style="display: flex; align-items: center; gap: 10px;">
+						<button class="btn btn-ghost btn-sm" id="suggest-info-btn" title="View Film Info" style="padding: 4px 8px;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+								<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+							</svg>
+						</button>
+						<button class="modal-close" id="modal-suggest-close">✕</button>
+					</div>
+				</div>
+				
+				<div class="suggest-split-wrapper">
+					<div class="suggest-poster-aside" id="suggest-poster-aside">
+						<img id="suggest-poster-img" alt="Movie Poster" />
+					</div>
+					
+					<div class="suggest-content-wrapper">
+						<div class="suggest-body">
+							<div class="suggest-film-title" id="suggest-film-title"></div>
+							<div class="suggest-film-meta" id="suggest-film-meta"></div>
+							<div class="suggest-film-cat" id="suggest-film-cat"></div>
+						</div>
+						<div class="suggest-footer">
+							<button class="btn btn-ghost" id="suggest-again-btn">Suggest Another</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ── STATS MODAL ── -->
+		<div class="modal-overlay" id="modal-stats">
+			<div class="modal stats-modal">
+				<div class="modal-header">
+					<div class="modal-title">Collection Stats</div>
+					<button class="modal-close" id="modal-stats-close">✕</button>
+				</div>
+				<div class="modal-body" id="modal-stats-body"></div>
+			</div>
+		</div>
+
+		<!-- ── INFO MODAL ── -->
+		<div class="modal-overlay" id="modal-info">
+			<div class="modal">
+				<div class="modal-header">
+					<div class="modal-title" id="info-title">Film Info</div>
+					<button class="modal-close" id="modal-info-close">✕</button>
+				</div>
+				<div class="modal-body">
+					<div class="info-top-section">
+						<img id="info-poster" alt="Poster" style="display:none;" />
+						<div id="info-detail-table-wrap" style="flex:1;"></div>
+					</div>
+					<div class="info-synopsis" id="info-synopsis"></div>
+				</div>
+				<div class="info-boxset-nav" id="info-boxset-nav" style="display:none;">
+					<button class="info-nav-btn" id="info-nav-prev">&#8592;</button>
+					<span class="info-nav-label" id="info-nav-label"></span>
+					<button class="info-nav-btn" id="info-nav-next">&#8594;</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- ── TOAST ── -->
+		<div class="toast" id="toast">
+			<span class="toast-icon">✓</span><span id="toast-msg"></span>
+		</div>
+
+		<!-- ── TEMPLATES ── -->
+		<template id="tmpl-entry-card">
+			<div class="entry-card">
+				<div class="entry-main">
+					<span class="entry-num"></span>
+					<div class="entry-poster-wrap"></div>
+					<div class="entry-info">
+						<div class="entry-title"></div>
+						<div class="entry-meta brand-wrap"></div>
+					</div>
+					<div class="entry-actions">
+						<input type="checkbox" class="entry-select-check" title="Select">
+						<button class="btn btn-ghost btn-sm btn-info" title="Info">
+							<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+								<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+							</svg>
+						</button>
+						<button class="btn btn-ghost btn-sm btn-edit" title="Edit">
+							<svg width="12" height="12"><use href="#icon-edit"></use></svg>
+						</button>
+						<button class="btn btn-danger btn-sm btn-delete" title="Delete">
+							<svg width="12" height="12"><use href="#icon-delete"></use></svg>
+						</button>
+					</div>
+				</div>
+			</div>
+		</template>
+
+		<!-- Subfilm row: no wiki field here — wiki links are now in the links section at the bottom -->
+		<template id="tmpl-subfilm-row">
+			<div class="subfilm-row">
+				<input class="form-input sf-title" placeholder="Film title">
+				<input class="form-input year-input sf-year" type="number" placeholder="Year" min="1888" max="2099">
+				<input class="form-input sf-size" type="number" placeholder="GB" step="0.01" min="0">
+				<button class="remove-subfilm" title="Remove">×</button>
+			</div>
+		</template>
+
+		<script src="movies.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>

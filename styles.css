@@ -1,0 +1,895 @@
+/* ==========================================================================
+   1. SYSTEM VARIABLES & CONFIGURATION
+   ========================================================================== */
+:root {
+	/* Core Color Surface System */
+	--bg: #0b0c0f;
+	--surface: #13151a;
+	--surface2: #1c1f27;
+	--border: #272b36;
+	--border2: #2f3342;
+	--text: #e4e6ed;
+	--text2: #8a90a0;
+	--text3: #555b6e;
+
+	/* Brand & Structural Accents */
+	--accent: #e8c547;
+	--accent2: #c9a93a;
+	--accent-rgb: 232, 197, 71;
+	
+	--amazon: #ff9900;
+	--amazon-rgb: 255, 153, 0;
+	
+	--bestbuy: #0046be;
+	--bestbuy-light: #5c8fe8;
+	--bestbuy-rgb: 0, 70, 190;
+	--bestbuy-light-rgb: 92, 143, 232;
+
+	/* Semantic System States */
+	--danger: #e05a5a;
+	--danger-border: #3a2020;
+	--danger-hover: #2a1515;
+	
+	--warning: #e8a020;
+	--warning-border: #3a2e10;
+	--warning-hover: #2a2010;
+	
+	--success: #4caf7d;
+	--success-rgb: 76, 175, 125;
+
+	/* Global Architecture Radii */
+	--radius: 6px;
+	--radius-lg: 10px;
+}
+
+/* ==========================================================================
+   2. GLOBAL RESETS & INHERITANCES
+   ========================================================================== */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: "DM Sans", sans-serif;
+	font-weight: 300;
+	min-height: 100vh;
+	line-height: 1.5;
+}
+
+input, 
+button, 
+select, 
+textarea {
+	font-family: inherit;
+}
+
+/* ==========================================================================
+   3. STRUCTURAL UTILITIES (TYPOGRAPHY & LAYOUT)
+   ========================================================================== */
+/* Typography Assemblies */
+.font-display, .logo, .category-name, .modal-title, .suggest-title, .stats-card-value {
+	font-family: "Bebas Neue", sans-serif;
+}
+
+.font-mono, .logo span, .stats-inline, .sidebar-label, .category-count, .entry-num, .entry-meta, .subfilm-year, .digitized-btn, .suggest-film-meta, .suggest-film-cat, .stats-avg-value, .stats-card-label, .stats-card-sub, .stats-section-title, .stats-bar-count, .stats-bar-count-main, .stats-bar-count-sub, .info-detail-table th {
+	font-family: "DM Mono", monospace;
+}
+
+/* Layout Flex Assemblies */
+.flex-row, .header-actions, .btn, .search-bar, .entry-main, .entry-meta, .entry-actions, .subfilm, .toggle-row, .subfilm-row, .toast, .suggest-film-meta, .stats-bar-row, .stats-bar-count-stack, .card-footer, .brand-wrap {
+	display: flex;
+	align-items: center;
+}
+
+.flex-between, header, .category-header, .modal-header, .suggest-header, .stats-avg-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.flex-center, .entry-poster-wrap, .info-nav-btn, .suggest-poster-aside {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Atomic Visual Helpers */
+.d-none { display: none !important; }
+.btn-block { width: 100%; justify-content: center; }
+.pt-1 { padding-top: 4px; }
+.mt-1 { margin-top: 8px; }
+.mb-0 { margin-bottom: 0; }
+.brand-wrap { gap: 12px; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+/* ==========================================================================
+   4. INTERACTIVE ACTIONS (BUTTONS & CONTROLS)
+   ========================================================================== */
+.btn {
+	background: var(--btn-bg, transparent);
+	color: var(--btn-color, var(--text));
+	border: 1px solid var(--btn-border, transparent);
+	gap: 7px;
+	font-size: 13px;
+	font-weight: 500;
+	padding: 7px 14px;
+	border-radius: var(--radius);
+	cursor: pointer;
+	transition: all 0.15s;
+	white-space: nowrap;
+	text-decoration: none;
+}
+
+.btn:hover {
+	background: var(--btn-bg-hover, transparent);
+	color: var(--btn-color-hover, var(--text));
+	border-color: var(--btn-border-hover, transparent);
+}
+
+.btn-primary {
+	--btn-bg: var(--accent);
+	--btn-color: var(--bg);
+	--btn-border: var(--accent);
+	--btn-bg-hover: var(--accent2);
+	--btn-border-hover: var(--accent2);
+	--btn-color-hover: var(--bg);
+}
+
+.btn-ghost {
+	--btn-color: var(--text2);
+	--btn-border: var(--border2);
+	--btn-color-hover: var(--accent);
+	--btn-border-hover: var(--accent);
+}
+
+.btn-danger {
+	--btn-color: var(--danger);
+	--btn-border: var(--danger-border);
+	--btn-bg-hover: var(--danger-hover);
+	--btn-color-hover: var(--danger);
+	--btn-border-hover: var(--danger-border);
+}
+
+.btn-warning {
+	--btn-color: var(--warning);
+	--btn-border: var(--warning-border);
+	--btn-bg-hover: var(--warning-hover);
+	--btn-color-hover: var(--warning);
+	--btn-border-hover: var(--warning-border);
+}
+
+.btn-sm {
+	font-size: 11px;
+	padding: 4px 10px;
+}
+
+/* Hamburger Sidebar Toggle Icon */
+.btn-hamburger {
+	background: transparent;
+	border: 1px solid var(--border2);
+	border-radius: var(--radius);
+	color: var(--text2);
+	cursor: pointer;
+	padding: 7px 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	transition: border-color 0.15s, color 0.15s;
+	flex-shrink: 0;
+}
+.btn-hamburger:hover { border-color: var(--accent); color: var(--accent); }
+.btn-hamburger span {
+	display: block;
+	width: 16px;
+	height: 2px;
+	background: currentColor;
+	border-radius: 2px;
+	transition: transform 0.2s, opacity 0.2s;
+}
+.btn-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.btn-hamburger.open span:nth-child(2) { opacity: 0; }
+.btn-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ==========================================================================
+   5. NAVIGATION & APPLICATION HEADERS
+   ========================================================================== */
+header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background: rgba(11, 12, 15, 0.92);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid var(--border);
+	padding: 0 2rem;
+	height: 60px;
+}
+
+.logo {
+	font-size: 22px;
+	letter-spacing: 0.12em;
+	color: var(--accent);
+}
+.logo span {
+	color: var(--text2);
+	font-size: 13px;
+	letter-spacing: 0.04em;
+	margin-left: 12px;
+}
+
+.header-actions {
+	gap: 10px;
+}
+
+/* Filtering & Realtime Database Search Bar Area */
+.search-bar {
+	position: sticky;
+	top: 60px;
+	z-index: 90;
+	background: rgba(11, 12, 15, 0.95);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid var(--border);
+	padding: 10px 2rem;
+	gap: 16px;
+}
+
+.search-wrap {
+	position: relative;
+	flex: 1;
+	min-width: 200px;
+}
+.search-wrap svg {
+	position: absolute;
+	left: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	opacity: 0.4;
+	pointer-events: none;
+}
+
+.search-input {
+	width: 100%;
+	padding: 9px 12px 9px 38px;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	color: var(--text);
+	font-size: 14px;
+	outline: none;
+	transition: border-color 0.15s;
+}
+.search-input::placeholder { color: var(--text3); }
+.search-input:focus { border-color: var(--accent); }
+
+.stats-inline {
+	gap: 18px;
+	font-size: 11px;
+	color: var(--text3);
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+.stats-inline strong { color: var(--accent); }
+
+/* ==========================================================================
+   6. VIEWPORT ARCHITECTURE & LAYOUT PANELS
+   ========================================================================== */
+.page-body { 
+	display: flex; 
+	align-items: flex-start; 
+}
+
+/* Filter Control Drawer Panel */
+.sidebar {
+	width: 220px;
+	flex-shrink: 0;
+	position: sticky;
+	top: 109px;
+	max-height: calc(100vh - 109px);
+	overflow-y: auto;
+	padding: 1.5rem 1.25rem 2rem 1.5rem;
+	border-right: 1px solid var(--border);
+	transition: width 0.22s ease, opacity 0.22s ease, padding 0.22s ease;
+}
+.sidebar.collapsed {
+	width: 0;
+	opacity: 0;
+	padding-left: 0;
+	padding-right: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.sidebar-section { 
+	margin-bottom: 1.75rem; 
+}
+.sidebar-label {
+	font-size: 10px;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--text3);
+	margin-bottom: 8px;
+}
+
+.filter-select {
+	width: 100%;
+	padding: 8px 10px;
+	background: var(--surface2);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	color: var(--text);
+	font-size: 13px;
+	outline: none;
+	cursor: pointer;
+	transition: border-color 0.15s;
+	display: block;
+}
+.filter-select:focus { border-color: var(--accent); }
+
+/* Primary Database Records Board */
+.content {
+	flex: 1;
+	min-width: 0;
+	padding: 1.75rem 2rem 2rem;
+}
+
+.category { 
+	margin-bottom: 2.5rem; 
+}
+.category-header { 
+	margin-bottom: 12px; 
+	padding-bottom: 8px; 
+	border-bottom: 1px solid var(--border); 
+}
+.category-name { 
+	font-size: 17px; 
+	letter-spacing: 0.1em; 
+	color: var(--text2); 
+}
+.category-count {
+	font-size: 11px;
+	color: var(--text3);
+	background: var(--surface2);
+	padding: 2px 8px;
+	border-radius: 20px;
+	border: 1px solid var(--border);
+}
+
+.entries-grid { 
+	display: grid; 
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
+	gap: 8px; 
+}
+
+/* ==========================================================================
+   7. LIBRARY ENTRY CARDS & DATA BADGES
+   ========================================================================== */
+.entry-card {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+	transition: border-color 0.15s, transform 0.15s;
+}
+.entry-card:hover { border-color: var(--border2); transform: translateY(-1px); }
+.entry-card.is-boxset { border-left: 2px solid var(--accent); }
+
+.entry-main { gap: 12px; padding: 12px 14px; align-items: flex-start; }
+.entry-num { display: none; }
+.entry-info { flex: 1; min-width: 0; }
+.entry-title { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.3; margin-bottom: 2px; }
+.entry-meta { font-size: 11px; color: var(--text3); gap: 8px; }
+.entry-actions { gap: 6px; flex-shrink: 0; }
+
+/* Dynamic Content Miniatures */
+.entry-poster-wrap {
+	width: 36px;
+	height: 54px;
+	background: var(--surface2);
+	border: 1px solid var(--border);
+	border-radius: 4px;
+	flex-shrink: 0;
+	overflow: hidden;
+	margin-right: 2px;
+}
+.entry-poster-wrap img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Meta Data Tags */
+.badge-boxset {
+	font-size: 9px;
+	font-weight: 500;
+	letter-spacing: 0.06em;
+	background: rgba(var(--accent-rgb), 0.1);
+	color: var(--accent);
+	border: 1px solid rgba(var(--accent-rgb), 0.2);
+	padding: 1px 6px;
+	border-radius: 3px;
+	text-transform: uppercase;
+}
+
+.badge-format {
+	font-size: 9px;
+	font-weight: 500;
+	letter-spacing: 0.06em;
+	padding: 1px 6px;
+	border-radius: 3px;
+	text-transform: uppercase;
+}
+.badge-4k { background: rgba(var(--accent-rgb), 0.12); color: var(--accent); border: 1px solid rgba(var(--accent-rgb), 0.25); }
+.badge-bluray { background: rgba(var(--bestbuy-light-rgb), 0.1); color: var(--bestbuy-light); border: 1px solid rgba(var(--bestbuy-light-rgb), 0.22); }
+.badge-dvd { background: rgba(138, 144, 160, 0.1); color: var(--text2); border: 1px solid rgba(138, 144, 160, 0.2); }
+
+/* Card Interactive Footer & Links Grid */
+.card-footer { justify-content: space-between; padding: 6px 14px 8px 46px; border-top: 1px solid var(--border); margin-top: 2px; }
+.entry-links { gap: 6px; padding: 0 14px 10px 46px; flex-wrap: wrap; }
+
+.link-btn {
+	font-size: 11px;
+	font-weight: 500;
+	padding: 3px 10px;
+	border-radius: 4px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	transition: all 0.15s;
+}
+.link-amazon { background: rgba(var(--amazon-rgb), 0.08); color: var(--amazon); border-color: rgba(var(--amazon-rgb), 0.2); }
+.link-amazon:hover { background: rgba(var(--amazon-rgb), 0.15); }
+.link-bestbuy { background: rgba(var(--bestbuy-rgb), 0.1); color: var(--bestbuy-light); border-color: rgba(var(--bestbuy-rgb), 0.25); }
+.link-bestbuy:hover { background: rgba(var(--bestbuy-rgb), 0.18); }
+
+.digitized-btn {
+	gap: 5px;
+	font-size: 10px;
+	font-weight: 500;
+	letter-spacing: 0.05em;
+	padding: 3px 9px;
+	border-radius: 4px;
+	border: 1px solid transparent;
+	cursor: pointer;
+	transition: all 0.15s;
+	background: none;
+	text-transform: uppercase;
+}
+.digitized-btn.no { color: var(--text3); border-color: var(--border); }
+.digitized-btn.no:hover { color: var(--text2); border-color: var(--border2); }
+.digitized-btn.yes {
+	color: var(--success);
+	border-color: rgba(var(--success-rgb), 0.25);
+	background: rgba(var(--success-rgb), 0.07);
+}
+.digitized-btn.yes:hover { background: rgba(var(--success-rgb), 0.12); }
+.digitized-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: currentColor; }
+
+/* Structural Nested Box Set Items Track */
+.subfilms { margin: 0 14px 10px 46px; border-left: 2px solid var(--border2); padding-left: 12px; }
+.subfilm { gap: 8px; padding: 4px 0; font-size: 12px; color: var(--text2); border-bottom: 1px solid var(--border); }
+.subfilm:last-child { border-bottom: none; }
+.subfilm-year { font-size: 10px; color: var(--text3); flex-shrink: 0; }
+
+/* ==========================================================================
+   8. BASE INTERACTIVE DIALOG MODALS
+   ========================================================================== */
+.modal-overlay, .suggest-overlay {
+	display: none;
+	position: fixed;
+	inset: 0;
+	z-index: 500;
+	background: rgba(0, 0, 0, 0.7);
+	backdrop-filter: blur(4px);
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+}
+.modal-overlay.open, .suggest-overlay.open {
+	display: flex; 
+}
+
+.modal, .suggest-modal {
+	background: var(--surface);
+	border: 1px solid var(--border2);
+	border-radius: var(--radius-lg);
+	width: 100%;
+	max-width: 560px;
+	max-height: 90vh;
+	overflow-y: auto;
+	box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+	animation: modal-in 0.2s ease;
+}
+@keyframes modal-in {
+	from { opacity: 0; transform: translateY(12px) scale(0.98); }
+	to { opacity: 1; transform: none; }
+}
+
+.modal-header, .suggest-header { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); }
+.modal-title, .suggest-title { font-size: 18px; letter-spacing: 0.1em; color: var(--accent); }
+
+.modal-close {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--text3);
+	font-size: 20px;
+	line-height: 1;
+	padding: 4px;
+	transition: color 0.15s;
+}
+.modal-close:hover { color: var(--text); }
+.modal-body { padding: 18px 20px; }
+
+.modal-footer {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	padding: 14px 20px;
+	border-top: 1px solid var(--border);
+}
+.modal-sm { max-width: 400px; }
+.modal.boxset-wide { max-width: 780px; width: 95vw; }
+
+/* ==========================================================================
+   9. FORMS & DATA CONTROLS EDITING INTERFACE
+   ========================================================================== */
+.form-row { margin-bottom: 14px; }
+.form-row label {
+	display: block;
+	font-size: 11px;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--text2);
+	margin-bottom: 6px;
+}
+
+.form-input, .form-select, .form-textarea {
+	width: 100%;
+	padding: 9px 12px;
+	background: var(--surface2);
+	border: 1px solid var(--border2);
+	border-radius: var(--radius);
+	color: var(--text);
+	font-size: 14px;
+	outline: none;
+	transition: border-color 0.15s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text3); }
+.form-textarea { resize: vertical; min-height: 60px; }
+
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.form-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.readonly-input { color: var(--text3); cursor: default; }
+.form-hint { color: var(--text3); font-weight: 300; text-transform: none; }
+
+/* Form Component Binary Toggles */
+.toggle-row { gap: 10px; margin-bottom: 14px; }
+.toggle-align { margin-bottom: 0; margin-top: 9px; }
+.toggle-label { font-size: 13px; color: var(--text2); }
+.toggle {
+	width: 38px;
+	height: 20px;
+	background: var(--border2);
+	border-radius: 20px;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	transition: background 0.2s;
+	flex-shrink: 0;
+}
+.toggle::after {
+	content: "";
+	position: absolute;
+	left: 3px;
+	top: 3px;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: var(--text3);
+	transition: all 0.2s;
+}
+.toggle.on { background: var(--accent); }
+.toggle.on::after { left: 21px; background: #0b0c0f; }
+
+/* Modal Sub-collection Multi-item Entries Editor Array */
+.subfilms-builder { margin-top: 8px; }
+.subfilm-row { gap: 8px; margin-bottom: 6px; }
+.sf-title { flex: 2; }
+.sf-year { max-width: 80px; }
+.sf-size { width: 70px; flex: none; }
+
+.remove-subfilm {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--text3);
+	font-size: 18px;
+	line-height: 1;
+	transition: color 0.15s;
+	flex-shrink: 0;
+}
+.remove-subfilm:hover { color: var(--danger); }
+
+.add-subfilm-btn {
+	font-size: 12px;
+	color: var(--accent);
+	background: none;
+	border: 1px dashed rgba(var(--accent-rgb), 0.3);
+	border-radius: var(--radius);
+	padding: 6px 12px;
+	cursor: pointer;
+	width: 100%;
+	transition: all 0.15s;
+	margin-top: 4px;
+}
+.add-subfilm-btn:hover {
+	background: rgba(var(--accent-rgb), 0.05);
+	border-color: var(--accent);
+}
+
+/* ==========================================================================
+   10. SUGGESTION GENERATOR MODAL SPECIALIZATION
+   ========================================================================== */
+.suggest-overlay { background: rgba(0, 0, 0, 0.75); }
+.suggest-modal { max-width: 580px; overflow: hidden; }
+.suggest-header { background-color: var(--surface); border-bottom: 1px solid var(--border); }
+
+/* Master Layout Two Column Framing Split Grid */
+.suggest-split-wrapper {
+	display: grid;
+	grid-template-columns: 180px 1fr;
+	align-items: stretch;
+}
+
+/* Left-side Art Canvas Layout Box */
+.suggest-poster-aside {
+	background: var(--surface2);
+	border-right: 1px solid var(--border);
+	overflow: hidden;
+}
+
+/* Fallback collapse state triggered dynamically if offline/no data metadata */
+.suggest-modal.no-poster .suggest-split-wrapper { grid-template-columns: 0px 1fr; }
+.suggest-modal.no-poster .suggest-poster-aside { border-right: none; }
+
+/* Native Theatrical 2:3 Movie Aspect Ratio Image Asset Processing */
+#suggest-poster-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	aspect-ratio: 2 / 3;
+	opacity: 0;
+	transition: opacity 0.25s ease-in-out;
+}
+#suggest-poster-img.loaded { opacity: 1; }
+
+/* Right-side Text Data Column & Controls Alignment */
+.suggest-content-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.suggest-body { 
+	padding: 24px 20px 12px; 
+	text-align: left; 
+}
+.suggest-film-title { font-size: 24px; font-weight: 500; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
+.suggest-film-meta { font-size: 12px; color: var(--text3); gap: 10px; justify-content: flex-start; margin-bottom: 14px; }
+.suggest-film-cat { font-size: 11px; color: var(--text3); margin-bottom: 20px; }
+.suggest-footer { display: flex; gap: 10px; justify-content: flex-start; padding: 12px 20px 20px; }
+
+/* ==========================================================================
+   11. DATA DETAILED ANALYSIS PANEL (INFO MODAL)
+   ========================================================================== */
+#modal-info .modal {
+	max-width: 1120px;
+	width: 1120px;
+	display: flex;
+	flex-direction: column;
+	height: 85vh;
+}
+#modal-info .modal-body {
+	flex: 1;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+#modal-info .info-top-section { flex-shrink: 0; }
+#modal-info .info-synopsis { flex: 1; overflow-y: auto; min-height: 60px; }
+
+.info-top-section {
+	display: flex;
+	gap: 32px;
+	margin-bottom: 24px;
+	align-items: stretch;
+}
+
+#info-poster {
+	height: 100%;
+	width: auto;
+	border-radius: var(--radius);
+	border: 1px solid var(--border);
+	flex-shrink: 0;
+	box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Analytical Production Data Sheet Grid */
+.info-detail-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 14px;
+	margin-top: 4px;
+}
+.info-detail-table th, 
+.info-detail-table td {
+	text-align: left;
+	padding: 10px 14px;
+	border-bottom: 1px solid var(--border);
+	vertical-align: top;
+}
+.info-detail-table th {
+	color: var(--text3);
+	font-weight: 500;
+	width: 150px;
+	white-space: nowrap;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+.info-detail-table td { color: var(--text); }
+.info-synopsis { font-size: 15px; color: var(--text2); line-height: 1.7; white-space: pre-wrap; }
+
+/* Collective Sub-film Switching Interface Bar */
+.info-boxset-nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	padding: 12px 20px 16px;
+	border-top: 1px solid var(--border);
+	flex-shrink: 0;
+}
+.info-nav-btn {
+	background: var(--surface2);
+	border: 1px solid var(--border2);
+	border-radius: var(--radius);
+	color: var(--text);
+	font-size: 18px;
+	width: 38px;
+	height: 38px;
+	cursor: pointer;
+	transition: all 0.15s;
+}
+.info-nav-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.info-nav-btn:disabled { opacity: 0.25; cursor: default; }
+.info-nav-label { font-size: 12px; color: var(--text3); min-width: 48px; text-align: center; }
+
+/* ==========================================================================
+   12. HARDWARE INFRASTRUCTURE & METRICS PANEL (STATS)
+   ========================================================================== */
+.stats-modal { max-width: 780px; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.stats-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.stats-avg-col { display: flex; flex-direction: column; gap: 7px; padding-top: 2px; }
+.stats-avg-label { color: var(--text2); }
+.stats-avg-value { font-size: 11px; }
+
+.stats-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.stats-card-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; }
+.stats-card-value { font-size: 28px; color: var(--accent); letter-spacing: 0.05em; line-height: 1; }
+.stats-card-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+.stats-section-title {
+	font-size: 11px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--text3);
+	margin: 16px 0 8px;
+	padding-bottom: 6px;
+	border-bottom: 1px solid var(--border);
+}
+
+/* Graphic Progress Tracking Bars */
+.stats-bar-row { gap: 10px; margin-bottom: 7px; font-size: 12px; }
+.stats-bar-label { width: 80px; flex-shrink: 0; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stats-bar-label.wide { width: 120px; }
+.stats-bar-track { flex: 0 1 60%; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.stats-bar-fill { height: 100%; border-radius: 3px; background: var(--accent); transition: width 0.4s ease; }
+.stats-bar-fill.green { background: var(--success); }
+.stats-bar-fill.blue { background: var(--bestbuy-light); }
+.stats-bar-fill.muted { background: var(--text3); }
+
+.stats-bar-count { min-width: 52px; text-align: right; color: var(--text3); font-size: 11px; flex-shrink: 0; }
+.stats-bar-count-stack { gap: 8px; flex-shrink: 0; white-space: nowrap; }
+.stats-bar-count-main { font-size: 11px; color: var(--text3); }
+.stats-bar-count-sub { font-size: 10px; color: var(--text3); white-space: nowrap; }
+
+/* ==========================================================================
+   13. MASS MANIPULATION WORKFLOW (BATCH SELECT MODE)
+   ========================================================================== */
+.select-mode .btn-edit,
+.select-mode .btn-delete { 
+	display: none !important; 
+}
+
+.entry-select-check { 
+	display: none; 
+	width: 18px; 
+	height: 18px; 
+	accent-color: var(--accent); 
+	cursor: pointer; 
+	flex-shrink: 0; 
+}
+.select-mode .entry-select-check { display: block; }
+.select-mode .entry-card { cursor: pointer; user-select: none; }
+.entry-card.selected { outline: 1px solid var(--accent); background: rgba(var(--accent-rgb), 0.05); }
+
+/* ==========================================================================
+   14. SYSTEM NOTIFICATIONS & ALERTS
+   ========================================================================== */
+/* Empty Engine States Fallback */
+.no-results { text-align: center; padding: 3rem; color: var(--text3); font-size: 14px; }
+.no-results strong { display: block; font-size: 32px; margin-bottom: 8px; opacity: 0.3; }
+
+/* System Messaging Toast Popups */
+.toast {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	z-index: 999;
+	background: var(--surface2);
+	border: 1px solid var(--border2);
+	border-radius: var(--radius-lg);
+	padding: 12px 16px;
+	font-size: 13px;
+	color: var(--text);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+	gap: 10px;
+	transform: translateY(16px);
+	opacity: 0;
+	transition: all 0.25s;
+	pointer-events: none;
+	max-width: 320px;
+}
+.toast.show { transform: none; opacity: 1; }
+.toast-icon { font-size: 16px; flex-shrink: 0; }
+
+/* Custom System Scrolling Tracks */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+/* ==========================================================================
+   15. GRID ADAPTABILITY & DEVICE MEDIA QUERY STACKS
+   ========================================================================== */
+@media (max-width: 800px) {
+	#modal-info .modal { width: 95vw; height: 90vh; }
+	.info-top-section { flex-direction: column; align-items: center; }
+	.info-table th, .info-table td { padding: 10px; }
+}
+
+@media (max-width: 600px) {
+	header { padding: 0 1rem; }
+	.search-bar { padding: 8px 1rem; }
+	.stats-inline { display: none; }
+	.sidebar { top: 105px; max-height: calc(100vh - 105px); }
+	.logo span { display: none; }
+	.entries-grid { grid-template-columns: 1fr; }
+	.content { padding: 1.25rem 1rem; }
+}
+
+@media (max-width: 500px) {
+	.suggest-split-wrapper { grid-template-columns: 1fr; }
+	.suggest-modal.no-poster .suggest-split-wrapper { grid-template-columns: 1fr; }
+	.suggest-poster-aside { border-right: none; border-bottom: 1px solid var(--border); max-height: 280px; }
+}
